@@ -96,26 +96,24 @@
     </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            cef.on("show_login", () =>
-            {
+        cef.on("show_login", () =>
+        {
+            setTimeout(function () {
+                document.getElementById('loginBox').classList.add('show');
+            }, 100);
+
+            var loginButton = document.getElementById('loginButton');
+            var loginBox = document.getElementById('loginBox');
+
+            // Add click event listener to the login button
+            loginButton.addEventListener('click', function () {
+                // Reverse the animation to hide the container and cef
+                loginBox.classList.add('hide');
+
+                // Hide the cef after animation is done
                 setTimeout(function () {
-                    document.getElementById('loginBox').classList.add('show');
-                }, 100);
-
-                var loginButton = document.getElementById('loginButton');
-                var loginBox = document.getElementById('loginBox');
-
-                // Add click event listener to the login button
-                loginButton.addEventListener('click', function () {
-                    // Reverse the animation to hide the container and cef
-                    loginBox.classList.add('hide');
-
-                    // Hide the cef after animation is done
-                    setTimeout(function () {
-                        cef.hide(true);
-                    }, 500);
-                });
+                    cef.hide(true);
+                }, 500);
             });
         });
     </script>
