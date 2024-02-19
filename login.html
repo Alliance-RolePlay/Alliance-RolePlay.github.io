@@ -28,13 +28,13 @@
             padding: 20px;
             box-shadow: 0 0 30px rgba(0, 0, 0, 1);
             transition: opacity 0.5s, transform 0.5s ease;
-            opacity: 0;
-            transform: translateY(200px);
-        }
-
-        .container.show {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        .container.hide {
+            opacity: 0;
+            transform: translateY(200px);
         }
 
         .title {
@@ -98,14 +98,20 @@
                 // Add 'show' class to the container after a delay
                 document.getElementById('loginBox').classList.add('show');
             }, 100);
-            
-            
+
             // Get the login button element
             var loginButton = document.getElementById('loginButton');
+            var loginBox = document.getElementById('loginBox');
 
             // Add click event listener to the login button
-            loginButton.addEventListener('click', function() {
-                cef.hide(true);
+            loginButton.addEventListener('click', function () {
+                // Reverse the animation to hide the container and cef
+                loginBox.classList.add('hide');
+
+                // Hide the cef after animation is done
+                setTimeout(function () {
+                    cef.hide(true);
+                }, 500);
             });
         });
     </script>
