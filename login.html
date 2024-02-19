@@ -28,13 +28,18 @@
             padding: 20px;
             box-shadow: 0 0 30px rgba(0, 0, 0, 1);
             transition: opacity 0.5s, transform 0.5s ease;
-            opacity: 1;
-            transform: translateY(0);
+            opacity: 0;
+            transform: translateY(300px);
         }
 
-        .container.hide {
+        .container.show.hide {
             opacity: 0;
-            transform: translateY(200px);
+            transform: translateY(-300px);
+        }
+
+        .container.show {
+            opacity: 1;
+            transform: translateY(0px);
         }
 
         .title {
