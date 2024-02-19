@@ -91,29 +91,28 @@
         <div class="input-group">
             <input type="password" placeholder="Введіть Пароль:">
         </div>
-        <div class="description">Спроб залишилось: 3</div>
+        <div class="description">Спроб залишилось: <span id="count">3</span></div>
         <button class="button" id="loginButton">Авторизуватися</button>
     </div>
 
     <script>
+        let times = 3; 
         cef.on("show_login", () =>
         {
             setTimeout(function () {
                 document.getElementById('loginBox').classList.add('show');
             }, 100);
-
+        });
+        cef.on("login_process", ()=>
+        {
             var loginButton = document.getElementById('loginButton');
             var loginBox = document.getElementById('loginBox');
+            var count = document.getElementById('count');
 
             // Add click event listener to the login button
             loginButton.addEventListener('click', function () {
-                // Reverse the animation to hide the container and cef
-                loginBox.classList.add('hide');
-
-                // Hide the cef after animation is done
-                setTimeout(function () {
-                    cef.hide(true);
-                }, 500);
+                times--;
+                count.innerText = times;
             });
         });
     </script>
